@@ -109,7 +109,7 @@ struct Bellman_Ford_Result Bellman_Ford (Edge* edges, int edges_len, int from){
     for(size_t i = 0; i < V_len - 1; i++){
         for (size_t e = 0; e < edges_len; e++){
             Edge cur = edges[e];
-            long t = d[cur.from] + cur.weight; // тут бага
+            long t = d[cur.from] + cur.weight; // тут бага была
             if (d[cur.to] > t){
                 d[cur.to] = t;
                 prevs[cur.to] = cur.from;
@@ -157,7 +157,9 @@ struct Floyd_Warshall_Result Floyd_Warshall(Edge* edges, int edges_len){
     }
     for(size_t k = 0; k < V; k++){
         for (size_t i = 0; i < V; i++){
+            if (k ==  i) continue;
             for(size_t j = 0; j < V; j++){
+                if (k == j || j == i) continue;
                 int t = dist[i*V + k] + dist[k*V + j];
                 if (dist[i*V + j] > t){
                     dist[i*V + j] = t;

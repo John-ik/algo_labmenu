@@ -1,0 +1,6 @@
+a.out
+*.dot
+*.dot.svg
+*.tex
+_output/
+.vscode/
